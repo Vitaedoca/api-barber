@@ -3,9 +3,8 @@ class AgendaController {
 
     async create(request, response) {
 
-        const { name, start, end } = request.body;
+        const { name, start, end , id} = request.body;
 
-        const { id } = request.params;
 
         const user = await knex("agenda").insert({
             name,
