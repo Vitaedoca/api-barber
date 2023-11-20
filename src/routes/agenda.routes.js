@@ -7,7 +7,7 @@ const agendaController =  new AgendaController();
 
 const agendaRoutes = Router();
 
-agendaRoutes.post("/", ensureAuthenticated, agendaController.create);
+agendaRoutes.post("/:id", ensureAuthenticated, agendaController.create);
 agendaRoutes.put("/:id", ensureAuthenticated, agendaController.update);
 agendaRoutes.get("/", ensureAuthenticated, agendaController.show);
 agendaRoutes.delete("/:id", ensureAuthenticated, agendaController.delete);

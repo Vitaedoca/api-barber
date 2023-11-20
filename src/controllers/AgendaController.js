@@ -5,17 +5,17 @@ class AgendaController {
 
         const { name, start, end } = request.body;
 
-        const user_id = request.user.id;
+        const { id } = request.params;
 
-        await knex("agenda").insert({
+        const user = await knex("agenda").insert({
             name,
             start,
             end,
-            user_id
+            user_id: id
         })
 
 
-        return response.json({name, start, end, user_id});
+        return response.json({user});
     }
 
     async update(request, response) {
@@ -29,7 +29,7 @@ class AgendaController {
 
         return response.json({user});
     }
-    
+
     async show (request, response) {
         const user_id = request.user.id;
 
