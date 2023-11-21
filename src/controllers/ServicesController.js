@@ -53,7 +53,15 @@ class ServicesController {
         const user_id = request.user.id;
 
         const services = await knex("services").where({user_id});
-        console.log(services);
+
+        return response.json({services});
+    }
+
+    async showClient(request, response) {
+        const {user_id} = request.params;
+
+        const services = await knex("services").where({user_id});
+
 
         return response.json({services});
     }
