@@ -9,7 +9,7 @@ const horarioRoutes = Router();
 
 horarioRoutes.post("/", ensureAuthenticated, horarioController.create);
 horarioRoutes.get("/", ensureAuthenticated, horarioController.show);
-horarioRoutes.get("/disponiveis", ensureAuthenticated, horarioController.showDisp);
+horarioRoutes.get("/disponiveis/:user_id/:selectedDate", ensureAuthenticated, horarioController.showDisp);
 
 
 

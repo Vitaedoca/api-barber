@@ -32,15 +32,16 @@ class HoraraioController {
     }
 
     async showDisp(request, response) {
-        const user_id = request.user.id;
+        const { user_id, selectedDate } = request.params;
     
         try {
             // Obter todos os horários da tabela 'horarios'
             const horarios = await knex("horarios").select("horario");
     
-            // Obter os horários agendados do usuário da tabela 'agenda'
+            // Obter os horários agendados do usuário na data selecionada
             const horariosAgendados = await knex("agenda")
                 .where({ user_id: user_id })
+                .whereRaw('DATE(start) = ?', [selectedDate]) // Filtrar por data selecionada
                 .select("start", "end");
     
             // Criar um array com todos os horários disponíveis que não estão agendados
@@ -60,8 +61,7 @@ class HoraraioController {
         }
     }
     
-    
-    
+
 }
 
 module.exports = HoraraioController;
